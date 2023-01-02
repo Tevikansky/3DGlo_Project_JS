@@ -43,7 +43,6 @@ const timer = (deadline) => {
     timerHours.textContent = getTime.hours;
     timerMinutes.textContent = getTime.minutes;
     timerSeconds.textContent = getTime.seconds;
-    console.log("Я секунда")
   }
 
   updateClock()

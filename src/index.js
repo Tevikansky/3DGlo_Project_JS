@@ -4,7 +4,6 @@ import modal from './modules/modal';
 import validator from './modules/validator';
 import tabs from './modules/tabs';
 
-
 timer('6 january 2023');
 menu();
 modal();

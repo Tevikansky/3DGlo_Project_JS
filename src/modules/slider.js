@@ -8,6 +8,8 @@ const slider = () => {
   let currentSlide = 0;
   let interval;
 
+
+
   const createDots = slides.forEach(() => {
     const li = document.createElement('li')
     li.classList.add('dot');

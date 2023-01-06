@@ -1,12 +1,23 @@
 const slider = () => {
   const sliderBlock = document.querySelector('.portfolio-content')
   const slides = document.querySelectorAll('.portfolio-item')
+  const dotsBlock = document.querySelector('.portfolio-dots')
   const dots = document.querySelectorAll('.dot')
-
-const timeInterval = 2000
+  const timeInterval = 2000
 
   let currentSlide = 0;
   let interval;
+
+
+  // slides.forEach((slide, index) => {
+  //   if (e.target === dot) {
+  //     currentSlide = index;
+  //   }
+  // })
+
+// const createDots = () => {
+//   const dotItem = slides.lenght
+// }
 
 
   const prevSlide = (elems, index, strClass) => {
@@ -74,13 +85,13 @@ const timeInterval = 2000
     nextSlide(dots, currentSlide, 'dot-active');
   })
 
-  sliderBlock.addEventListener('mouseenter', (e)=> {
+  sliderBlock.addEventListener('mouseenter', (e) => {
     if (e.target.matches('.dot, .portfolio-btn')) {
       stopSlide()
     }
   }, true)
 
-  sliderBlock.addEventListener('mouseleave', (e)=> {
+  sliderBlock.addEventListener('mouseleave', (e) => {
     if (e.target.matches('.dot, .portfolio-btn')) {
       startSlide(timeInterval)
     }

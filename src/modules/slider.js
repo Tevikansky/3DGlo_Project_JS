@@ -1,23 +1,21 @@
+'use strict'
 const slider = () => {
-  const sliderBlock = document.querySelector('.portfolio-content')
-  const slides = document.querySelectorAll('.portfolio-item')
-  const dotsBlock = document.querySelector('.portfolio-dots')
-  const dots = document.querySelectorAll('.dot')
-  const timeInterval = 2000
+  const sliderBlock = document.querySelector('.portfolio-content');
+  const slides = document.querySelectorAll('.portfolio-item');
+  const dotsBlock = document.querySelector('.portfolio-dots');
+  const timeInterval = 2000;
 
   let currentSlide = 0;
   let interval;
 
+  const createDots = slides.forEach(() => {
+    const li = document.createElement('li')
+    li.classList.add('dot');
+    dotsBlock.append(li)
+  })
 
-  // slides.forEach((slide, index) => {
-  //   if (e.target === dot) {
-  //     currentSlide = index;
-  //   }
-  // })
-
-// const createDots = () => {
-//   const dotItem = slides.lenght
-// }
+  const dots = document.querySelectorAll('.dot')
+  dots[0].classList.add('dot-active');
 
 
   const prevSlide = (elems, index, strClass) => {
@@ -29,6 +27,7 @@ const slider = () => {
   }
 
   const autoSlide = () => {
+
     prevSlide(slides, currentSlide, 'portfolio-item-active');
     prevSlide(dots, currentSlide, 'dot-active');
     currentSlide++;
@@ -42,6 +41,7 @@ const slider = () => {
   }
 
   const startSlide = (timer = 1500) => {
+
     interval = setInterval(autoSlide, timer)
   }
 

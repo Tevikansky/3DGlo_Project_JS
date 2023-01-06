@@ -11,10 +11,12 @@ const modal = () => {
     btn.addEventListener("click", () => {
       if (window.screen.width > 768) {
         modalWindow.style.left = 0
+        modalWindow.style.transform = `translateX(-50%)`
         modal.style.display = `block`;
         animate()
       } else {
-        modalWindow.style.left = 30 + "%"
+        modalWindow.style.left = 50 + "%"
+        modalWindow.style.transform = `translateX(-50%)`
         modal.style.display = `block`;
       }
     })
@@ -25,8 +27,9 @@ const modal = () => {
     count++
     idInterval = requestAnimationFrame(animate)
 
-    if (count < 40) {
+    if (count < 50) {
       modalWindow.style.left = count + "%"
+
     } else {
       cancelAnimationFrame(idInterval)
       count = 0

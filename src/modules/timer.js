@@ -25,7 +25,6 @@ const timer = (deadline) => {
       hours = "00";
       minutes = "00";
       seconds = "00";
-      clearInterval(interval);
     }
 
     return {
@@ -49,10 +48,9 @@ const timer = (deadline) => {
 
   let getTime = getTimeRemaining();
   let interval = setInterval(updateClock, 1000)
-  // if (getTime.timeRemaining === 0) {
-  //   clearInterval(interval);
-  //   interval = null;
-  // }
+  if (getTime.timeRemaining < 0) {
+    clearInterval(interval);
+  }
 
 
 

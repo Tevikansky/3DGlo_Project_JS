@@ -8,7 +8,7 @@ const validator = () => {
 
   names.forEach((input) => {
     input.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\w/g, '')
+      e.target.value = e.target.value.replace(/[^\sА-Яа-я]+/g, '')
     })
   })
   message.addEventListener('input', (e) => {
@@ -27,7 +27,7 @@ const validator = () => {
   })
   phones.forEach((input) => {
     input.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/[^\-\)\(\d]+/g, '')
+      e.target.value = e.target.value.replace(/[^\+\-\)\(\d]+/gi, '')
     })
   })
 }

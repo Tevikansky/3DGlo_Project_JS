@@ -2,21 +2,31 @@ const sendForm = ({
   formId,
   someElem = []
 }) => {
-  const form = document.getElementById(formId)
-  const statusBlock = document.createElement('div')
+  const form = document.getElementById(formId);
+  const statusBlock = document.createElement('div');
+  const statusLoad = document.createElement('div');
   const loadText = "Загрузка..."
   const errorText = "Ошибка..."
   const successText = "Спасибо! Наш менеджер с вами свяжется!"
+  const timer = () => {
+    setTimeout(() => {
+      statusBlock.remove()
+    }, 5000)
 
+  }
+ 
 
   const validate = (list) => {
     let success = true
 
-    // list.forEach(input => {
-    //   if (!input.classList.contains('success')) {
-    //     success = false
-    //   }
-    // })
+    list.forEach((input) => {
+      if (
+        ((input.type === "text") && (input.value.length < 2)) ||
+        ((input.type === "email") && ((!input.value.includes('@') || (!input.value.includes('.'))))) ||
+        ((input.type === "tel") && ((input.value.length < 18)))) {
+        success = false
+      }
+    })
 
 
 
@@ -40,7 +50,10 @@ const sendForm = ({
 
     statusBlock.style = 'color: white'
     statusBlock.textContent = loadText
+    statusLoad.classList.add("sk-spinner", "sk-spinner-pulse")
     form.append(statusBlock)
+    form.append(statusLoad)
+
 
 
 
@@ -60,20 +73,25 @@ const sendForm = ({
 
     if (validate(formElements)) {
       sendData(formBody).then(data => {
-          
+
           statusBlock.textContent = successText
+          statusLoad.remove()
+
           formElements.forEach(input => {
             input.value = "";
           })
         })
         .catch(error => {
-          
+
           statusBlock.textContent = errorText
         })
     } else {
-      alert('Данные не валидны!')
-    }
+      alert('Данные введены неверно!')
+      statusLoad.remove()
 
+      statusBlock.textContent = errorText
+    }
+    timer()
   }
 
   try {

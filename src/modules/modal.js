@@ -7,6 +7,31 @@ const modal = () => {
   const buttons = document.querySelectorAll(".popup-btn")
 
 
+  const blockBody = () => {
+    const body = document.body;
+    body.style.overflow = 'hidden';
+    const bodyScroll = calcScroll();
+    body.style.marginRight = `${bodyScroll}px`;
+  }
+  const unBlockBody = () => {
+    const body = document.body;
+    body.style.overflow = 'auto';
+    body.style.marginRight = `0`;
+  }
+  const calcScroll = () => {
+    let div = document.createElement('div');
+    div.style.width = '500px';
+    div.style.height = '500px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
+  }
+
+
+
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -23,12 +48,11 @@ const modal = () => {
             modalWindow.style.left = progress * 50 + '%';
           }
         });
-        document.body.style = `overflow: hidden; left: -${window.innerWidth-document.documentElement.clientWidth}px; position: relative;`;
+        blockBody();
       } else {
         modalWindow.style.transform = `translateX(-50%)`
         modalWindow.style.left = 50 + "%"
         modal.style.display = `block`;
-        // document.body.style= 'overflow: hidden; width: 1903px;  position: relative;';
       }
     })
   })
@@ -38,8 +62,9 @@ const modal = () => {
 
   modal.addEventListener('click', (e) => {
     if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+      unBlockBody();
       modal.style.display = `none`;
-      document.body.style = 'overflow: none; left: 0; position: relative;';
+      
 
     }
   })

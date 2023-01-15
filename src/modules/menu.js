@@ -6,6 +6,8 @@ const menu = () => {
   const menuBtn = document.querySelector('.menu')
   const menu = document.querySelector('menu')
   const main = document.querySelector('main')
+  const a = main.querySelector('a')
+
 
   const scroll = (id) => {
     let movement = document.getElementById(id).offsetTop;
@@ -41,11 +43,11 @@ const menu = () => {
   menuBtn.addEventListener('click', handleMenu)
 
 
-  main.addEventListener('click', (e) => {
+  a.addEventListener('click', (e) => {
     e.preventDefault()
-    if (e.target.closest('a')) {
-      scroll(e.target.closest('a').href.substring(e.target.closest('a').href.indexOf('#') + 1))
-    }
+
+    scroll(a.href.substring(a.href.indexOf('#') + 1))
+
   })
 }
 
